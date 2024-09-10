@@ -68,7 +68,7 @@ import Collection from 'react-native-meteor-collection2';
 ```javascript
 
 // Both Meteor and React Native
-import SimpleSchema from 'simpl-schema';
+import SimpleSchema from 'meteor/aldeed:simple-schema';
 
 //We assume that another model of an Author exists so we can import its collection here..
 import { AuthorsCollection }  from "/models/Author";

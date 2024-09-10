@@ -1,8 +1,10 @@
 /* eslint-disable import/no-unresolved */
-import SimpleSchema from 'simpl-schema';
+import SimpleSchema from 'meteor/aldeed:simple-schema';
 import MessageBox from 'message-box';
 import { diff } from 'mongodb-diff';
+import 'meteor/aldeed:collection2/static';
 /* eslint-enable import/no-unresolved */
+
 
 export default (Meteor) => {
     /* We check for server code here to deal with a buffer issue in meteor-message-box

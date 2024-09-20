@@ -153,7 +153,7 @@ export default (Meteor) => {
             if (this._id) {
                 const updateDiff = diff(this.getDocument(), obj);
                 if (updateDiff && Object.keys(updateDiff).length !== 0) {
-                    this.update(updateDiff, callback);
+                    this.updateAsync(updateDiff, callback);
                 } else {
                     callback && callback(null);
                 }
@@ -167,7 +167,7 @@ export default (Meteor) => {
                         },
                     });
                 }
-                this._id = this.getCollection().insert(obj, callback);
+                this._id = this.getCollection().insertAsync(obj, callback);
             }
 
             return this;
@@ -175,13 +175,13 @@ export default (Meteor) => {
 
         update(modifier, callback) {
             if (this._id) {
-                this.getCollection().update(this._id, modifier, callback);
+                this.getCollection().updateAsync(this._id, modifier, callback);
             }
         }
 
         remove(callback) {
             if (this._id) {
-                this.getCollection().remove({ _id: this._id }, callback);
+                this.getCollection().removeAsync({ _id: this._id }, callback);
             }
         }
     };

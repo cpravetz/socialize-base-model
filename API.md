@@ -7,16 +7,16 @@ Instance methods are helper functions available on the instances returned from `
 __checkOwnership__ - Check to make sure the userId property is equal to the \_id of the currently logged in user.
 
 ```javascript
-var myBook = Meteor.books.findOne();
+var myBook = Meteor.books.findOneAsync();
 if(myBook.checkOwnership()){
-    mybook.remove();
+    mybook.removeAsync();
 }
 ```
 
 __save__ - Save instance to the database. If the instance was not previously saved to the database this will perform an insert. Otherwise it will diff the changes and update the database using a $set and update.
 
 ```javascript
-var book = Meteor.books.findOne();
+var book = Meteor.books.findOneAsync();
 
 book.title = 'To Kill a Mockingbird';
 
@@ -26,7 +26,7 @@ book.save();
 __update(modifier)__ - Update the record for the instance making changes specified by the modifier. In most cases it'll be easier to use `save` but this is here if needed.
 
 ```javascript
-Meteor.books.findOne().update({
+Meteor.books.findOneAsync().updateAsync({
     $set: { title:'Meteor For Dummies' }
 });
 ```
@@ -34,20 +34,20 @@ Meteor.books.findOne().update({
 __remove__ - Delete the database record for the instance.
 
 ```javascript
-Meteor.books.findOne().remove();
+Meteor.books.findOneAsync().removeAsync();
 ```
 
 __getCollection__ - returns a reference to the underlying collection for the class.
 
 ```javascript
-Meteor.books.findOne().getCollection();
+Meteor.books.findOneAsync().getCollection();
 ```
 
 
 __getCollectionName__ - returns a string specifying the name given to the collection when it was instantiated.
 
 ```javascript
-Meteor.books.findOne().getCollectionName(); //-> 'books'
+Meteor.books.findOneAsync().getCollectionName(); //-> 'books'
 ```
 
 __getUpdatableFields()__ - returns an object of values for all fields on the model that are allowed to be updated. This is particularly useful for passing to `vazco:uniforms`

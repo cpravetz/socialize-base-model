@@ -105,7 +105,7 @@ const BooksSchema = new SimpleSchema({
 
 class BookModel extends BaseModel {
     owner() {
-        return Meteor.users.findOne(this.userId);
+        return Meteor.users.findOneAsync(this.userId);
     }
 
     fullTitle() {
@@ -113,7 +113,7 @@ class BookModel extends BaseModel {
     }
 
     author() {
-        return AuthorsCollection.findOne(this.authorId);
+        return AuthorsCollection.findOneAsync(this.authorId);
     }
 }
 
@@ -125,7 +125,7 @@ BookModel.attachCollection(BooksCollection);
 
 // This is Meteor server code and should not be added on React Native
 BooksCollection.allow({
-    insert(userId, book) {
+    insertAsync(userId, book) {
         /*
         book is an instance of the Book class thanks to collection
         transforms. This enables us to call it's methods to check
@@ -169,7 +169,7 @@ With this in mind, lets insert a book in to the database client side.
 
 ```javascript
 //first we get get an Author for the book we want to insert
-var author = Meteor.authors.findOne({firstName:"Dave", lastName:"Pilkey"});
+var author = Meteor.authors.findOneAsync({firstName:"Dave", lastName:"Pilkey"});
 
 var book = new Book({
     title: "Captain Underpants",
